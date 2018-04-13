@@ -1,0 +1,58 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-2.5.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+	">
+
+	<bean id="moviePool" class="com.zaxxer.hikari.HikariConfig" primary="true">
+		<property name="poolName" value="sheikeDotmailerPool" />
+		<property name="dataSourceClassName" value="${jdbc.movie.datasource}" />
+		<property name="dataSourceProperties">
+			<props>
+				<prop key="url">${jdbc.movie.url}</prop>
+				<prop key="user">${jdbc.movie.username}</prop>
+				<prop key="password">${jdbc.movie.password}</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="moviePoolDataSource" class="com.zaxxer.hikari.HikariDataSource" primary="true"
+		destroy-method="close">
+		<constructor-arg ref="moviePool" />
+	</bean>
+	
+	<bean id="movieSessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref local="moviePoolDataSource" />
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">validate</prop>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+			</props>
+		</property>
+		<property name="annotatedClasses">
+			<list>
+				<value>main.java.movie.common.file.model.Movie</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="hibernateTransactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="movieSessionFactory"></property>
+    </bean>
+    
+    <tx:annotation-driven transaction-manager="hibernateTransactionManager" />
+    
+
+	
+
+
+</beans>
