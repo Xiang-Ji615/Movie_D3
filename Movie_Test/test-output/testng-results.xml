@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="16057" started-at="2018-04-14T13:36:32Z" finished-at="2018-04-14T13:36:48Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="16057" started-at="2018-04-14T13:36:32Z" finished-at="2018-04-14T13:36:48Z">
+      <class name="test.java.movie.common.test.FileReaderTest">
+        <test-method status="PASS" signature="springTestContextBeforeTestClass()[pri:0, instance:test.java.movie.common.test.FileReaderTest@126253fd]" name="springTestContextBeforeTestClass" is-config="true" duration-ms="27" started-at="2018-04-14T23:36:32Z" finished-at="2018-04-14T23:36:32Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextBeforeTestClass -->
+        <test-method status="PASS" signature="springTestContextPrepareTestInstance()[pri:0, instance:test.java.movie.common.test.FileReaderTest@126253fd]" name="springTestContextPrepareTestInstance" is-config="true" duration-ms="4810" started-at="2018-04-14T23:36:32Z" depends-on-methods="org.springframework.test.context.testng.AbstractTestNGSpringContextTests.springTestContextBeforeTestClass" finished-at="2018-04-14T23:36:37Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextPrepareTestInstance -->
+        <test-method status="PASS" signature="springTestContextBeforeTestMethod(java.lang.reflect.Method)[pri:0, instance:test.java.movie.common.test.FileReaderTest@126253fd]" name="springTestContextBeforeTestMethod" is-config="true" duration-ms="2" started-at="2018-04-14T23:36:37Z" finished-at="2018-04-14T23:36:37Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void test.java.movie.common.test.FileReaderTest.deleteMovies() throws java.io.IOException]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextBeforeTestMethod -->
+        <test-method status="PASS" signature="deleteMovies()[pri:0, instance:test.java.movie.common.test.FileReaderTest@126253fd]" name="deleteMovies" duration-ms="11183" started-at="2018-04-14T23:36:37Z" finished-at="2018-04-14T23:36:48Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- deleteMovies -->
+        <test-method status="PASS" signature="springTestContextAfterTestMethod(java.lang.reflect.Method)[pri:0, instance:test.java.movie.common.test.FileReaderTest@126253fd]" name="springTestContextAfterTestMethod" is-config="true" duration-ms="2" started-at="2018-04-14T23:36:48Z" finished-at="2018-04-14T23:36:48Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void test.java.movie.common.test.FileReaderTest.deleteMovies() throws java.io.IOException]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextAfterTestMethod -->
+        <test-method status="PASS" signature="springTestContextAfterTestClass()[pri:0, instance:test.java.movie.common.test.FileReaderTest@126253fd]" name="springTestContextAfterTestClass" is-config="true" duration-ms="0" started-at="2018-04-14T23:36:48Z" finished-at="2018-04-14T23:36:48Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextAfterTestClass -->
+      </class> <!-- test.java.movie.common.test.FileReaderTest -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>

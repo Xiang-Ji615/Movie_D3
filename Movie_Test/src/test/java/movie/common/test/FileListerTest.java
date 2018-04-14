@@ -13,15 +13,15 @@ import org.testng.annotations.Test;
 import main.java.movie.common.file.lister.IFileLister;
 import main.java.movie.test.config.TestConfig;
 
-@SpringBootTest(classes= {TestConfig.class})
+//@SpringBootTest(classes= {TestConfig.class})
 public class FileListerTest extends AbstractTestNGSpringContextTests{
 
-	@Autowired
-	@Qualifier("csvFileLister")
-	IFileLister<File> fileLister;
+//	@Autowired
+//	@Qualifier("csvFileLister")
+//	IFileLister<File> fileLister;
 	
-	@Test
-	public void fileListerTest() {
-		assertNotNull(fileLister.listFilesInFolder("C:\\Comactivity\\Movie"));
-	}
+//	@Test
+//	public void fileListerTest() {
+//		assertNotNull(fileLister.listFilesInFolder("C:\\Comactivity\\Movie"));
+//	}
 }
