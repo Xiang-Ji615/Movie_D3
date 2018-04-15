@@ -12,6 +12,7 @@ import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.transform.Transformers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.orm.hibernate5.HibernateCallback;
@@ -85,6 +86,38 @@ public class MovieDaoImp extends HibernateDaoSupport implements IMovieDao {
 		}
 		return ret;
 
+	}
+
+	@Override
+	public List<String> getMovieType() {
+		Session session = null;
+		List<String> ret = null;
+		try {
+			session = getHibernateTemplate().getSessionFactory().openSession();
+			String queryString = "select genres1 as MovieType from movie.movie where genres1 != '' group by genres1 union\n" + 
+					"select genres2 from movie.movie where genres2 != '' group by genres2 union\n" + 
+					"select genres3 from movie.movie where genres3 != '' group by genres3 union\n" + 
+					"select genres4 from movie.movie where genres4 != '' group by genres4 union\n" + 
+					"select genres5 from movie.movie where genres5 != '' group by genres5 union\n" + 
+					"select genres6 from movie.movie where genres6 != '' group by genres6 union\n" + 
+					"select genres7 from movie.movie where genres7 != '' group by genres7";
+			SQLQuery query = session.createSQLQuery(queryString);
+//			query.setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP);
+			ret =  query.list();
+
+		} catch (RuntimeException e) {
+			try {
+				logger.error(e.getMessage(), e);
+			} catch (RuntimeException rbe) {
+				System.out.println("Couldn’t roll back transaction : " + rbe);
+			}
+		} finally {
+			if (session != null) {
+				session.close();
+
+			}
+		}
+		return ret;
 	}
 
 }

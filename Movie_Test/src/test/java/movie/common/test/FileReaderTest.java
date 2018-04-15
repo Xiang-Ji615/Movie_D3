@@ -4,6 +4,7 @@ import static org.testng.Assert.assertNotNull;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.runner.RunWith;
@@ -24,6 +25,7 @@ import main.java.movie.common.file.lister.IFileLister;
 import main.java.movie.common.file.model.Movie;
 import main.java.movie.common.file.reader.IFileReader;
 import main.java.movie.dao.dao.IMovieDao;
+import main.java.movie.dao.model.MovieGrossType;
 import main.java.movie.test.config.TestConfig;
 
 //@RunWith(SpringJUnit4ClassRunner.class)
@@ -46,7 +48,7 @@ public class FileReaderTest extends AbstractTransactionalTestNGSpringContextTest
 	@Autowired
 	IMovieDao movieDao;
 	
-	@Test
+//	@Test
 	@Transactional(propagation=Propagation.REQUIRED)
 	@Rollback
 	public void fileReaderTest() throws IOException {
@@ -78,4 +80,32 @@ public class FileReaderTest extends AbstractTransactionalTestNGSpringContextTest
 //	movieDao.deleteMovies(movies);
 //	assertNotNull("Hello world");
 //}
+	
+//	@Test
+	@Transactional(propagation=Propagation.REQUIRED)
+	@Rollback
+	public void listMovieTypeTest() throws IOException {
+		assertNotNull(movieDao.getMovieType());
+	}
+	
+//	@Test
+	@Transactional(propagation=Propagation.REQUIRED)
+	@Rollback
+	public void getMovieSum() {
+		List<String> movieTypes = movieDao.getMovieType();
+		List<Movie> movies = movieDao.listMovies();
+		List<MovieGrossType> movieGrossTypes = new ArrayList<>();
+		for(String movieType : movieTypes) {
+			MovieGrossType grossType = new MovieGrossType();
+			for(Movie movie : movies) {
+				if(movie.getGenres1().equals(movieType) || movie.getGenres2().equals(movieType) || movie.getGenres3().equals(movieType) || movie.getGenres4().equals(movieType) || movie.getGenres5().equals(movieType) || movie.getGenres6().equals(movieType) || movie.getGenres7().equals(movieType)) {
+					grossType.setType(movieType);
+					grossType.setGrossSum(grossType.getGrossSum()==null?0:grossType.getGrossSum() + movie.getGross());
+				}
+			}
+			movieGrossTypes.add(grossType);
+		}
+		assertNotNull(movieGrossTypes);
+	}
+	
 }

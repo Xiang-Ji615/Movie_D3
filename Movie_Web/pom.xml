@@ -4,6 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>Movie_Web</groupId>
 	<artifactId>Movie_Web</artifactId>
+	<packaging>war</packaging>
 
 	<parent>
 		<groupId>Movie_Build</groupId>
@@ -66,6 +67,7 @@
 
 	<build>
 		<sourceDirectory>src</sourceDirectory>
+		<finalName>Movie_Web</finalName>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>

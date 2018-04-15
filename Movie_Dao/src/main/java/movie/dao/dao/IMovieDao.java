@@ -13,4 +13,6 @@ public interface IMovieDao {
 	List<Movie> listMovies();
 	
 	Object findMovie(Integer id);
+	
+	List<String> getMovieType();
 }
