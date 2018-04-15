@@ -11,9 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Commit;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.springframework.test.context.testng.AbstractTransactionalTestNGSpringContextTests;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.testng.annotations.Test;
@@ -24,13 +26,14 @@ import main.java.movie.common.file.reader.IFileReader;
 import main.java.movie.dao.dao.IMovieDao;
 import main.java.movie.test.config.TestConfig;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@ContextConfiguration(classes= {TestConfig.class})
+//@Transactional
+//@SpringBootTest(classes= {TestConfig.class})
 @ContextConfiguration(classes= {TestConfig.class})
 @Transactional
-//@SpringBootTest(classes= {TestConfig.class})
-//@Transactional
-//public class FileReaderTest extends AbstractTestNGSpringContextTests{
-public class FileReaderTest {
+public class FileReaderTest extends AbstractTransactionalTestNGSpringContextTests{
+//public class FileReaderTest {
 
 	@Autowired
 	@Qualifier("csvFileLister")
@@ -43,9 +46,9 @@ public class FileReaderTest {
 	@Autowired
 	IMovieDao movieDao;
 	
-	@org.junit.Test
+	@Test
 	@Transactional(propagation=Propagation.REQUIRED)
-	@Commit
+	@Rollback
 	public void fileReaderTest() throws IOException {
 		List<File> files = fileLister.listFilesInFolder("C:\\Comactivity\\Movie");
 		for(File file : files) {
